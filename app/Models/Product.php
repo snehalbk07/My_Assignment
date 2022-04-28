@@ -9,4 +9,3 @@ class Product extends Model
 {
     use HasFactory;
 }
-https://github.com/snehalbk07/my-assignment.git
