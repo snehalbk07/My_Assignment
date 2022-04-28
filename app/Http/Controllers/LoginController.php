@@ -35,6 +35,7 @@ class LoginController extends Controller
             return redirect('/dashboard');
         }
         else {
+            session()->flash('delete_message','Invalid Username or Password');
             return redirect('/login');
         }
     }

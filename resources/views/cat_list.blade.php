@@ -162,7 +162,7 @@
     }).trigger('click');
 
     $('.toastrDefaultError').click(function() {
-      toastr.success($(this).val())
+      toastr.error($(this).val())
     }).trigger('click');
 
     
