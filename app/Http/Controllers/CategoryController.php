@@ -107,7 +107,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         if (!$category) {
-            return redirect('category')->with('error','Invalid category id');
+            return redirect('category');
         }
        
         $category                   = Category::find($id);

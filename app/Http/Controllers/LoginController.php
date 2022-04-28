@@ -32,7 +32,7 @@ class LoginController extends Controller
         }
 
         if (Auth::attempt([$fieldType => $req->email,'password' => $req->password])) {
-            return redirect('/dashboard')->with('success',"Login Successful");
+            return redirect('/dashboard');
         }
         else {
             return redirect('/login');
