@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\LoginController@login');
 
-Route::middleware('IsGuestUser')->group(function(){
+Route::middleware('IsDemo')->group(function(){
+    Route::get('/', 'App\Http\Controllers\LoginController@login');
+
+
     Route::get('/login','App\Http\Controllers\LoginController@login')->name('login');
     Route::post('/login_details','App\Http\Controllers\LoginController@login_details')->name('login_details');
    
@@ -25,17 +27,30 @@ Route::middleware('IsGuestUser')->group(function(){
 Route::get('/logout','App\Http\Controllers\LoginController@logout')->name('logout');
 
 
-Route::middleware('IsValidUser')->group(function () {
+
+
+Route::middleware('UserValid')->group(function () {
+    Route::get('/user_dashboard', function () {
+        return view('user_dashboard');
+    });
+});
+
+
+
+    Route::middleware('IsValidUser')->group(function () {
     Route::get('/dashboard', function () {
         $category_count = \App\Models\Category::get();
         $product_count = \App\Models\Product::get();
         return view('dashboard',compact('category_count','product_count'));
     });
 
+   
+
+
     Route::get('category','App\Http\Controllers\CategoryController@index')->name('category');
-    Route::get('cat_add','App\Http\Controllers\CategoryController@create')->name('cat_add');
+    Route::get('cat_add','App\Http\Controllers\CategoryController@create');
     Route::post('cat_add','App\Http\Controllers\CategoryController@store')->name('cat_add');
-    Route::get('cat_edit/{id}','App\Http\Controllers\CategoryController@edit')->name('cat_edit');
+    Route::get('cat_edit/{id}','App\Http\Controllers\CategoryController@edit');
     Route::post('cat_edit/{id}','App\Http\Controllers\CategoryController@update')->name('cat_edit');
     Route::get('cat_delete/{id}','App\Http\Controllers\CategoryController@destroy')->name('cat_delete');
 
@@ -47,7 +62,14 @@ Route::middleware('IsValidUser')->group(function () {
     Route::post('prod_edit/{id}','App\Http\Controllers\ProductController@update')->name('prod_edit');
     Route::get('prod_delete/{id}','App\Http\Controllers\ProductController@destroy')->name('prod_delete');
 
-    
+     
+    Route::get('users','App\Http\Controllers\UserController@index')->name('users');
+    Route::get('user_add','App\Http\Controllers\UserController@create')->name('user_add');
+    Route::post('user_add','App\Http\Controllers\UserController@store')->name('user_add');
+    Route::get('user_edit/{id}','App\Http\Controllers\UserController@edit')->name('user_edit');
+    Route::post('user_edit/{id}','App\Http\Controllers\UserController@update')->name('user_edit');
+
+    Route::get('user_delete/{id}','App\Http\Controllers\UserController@destroy');
 
 });
 

@@ -59,10 +59,10 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="category">Category</label>
-                        <select id="category" name="category" class="form-control {{ $errors->has('category') ? ' is-invalid' : '' }}">
+                        <select id="category" name="category" class="form-control {{ $errors->has('category') ? ' is-invalid' : '' }}" >
                           <option value="">Select category</option>
                           @foreach($category as $cat)
-                            <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
+                            <option value="{{ $cat->id }}" @if(old('category')==$cat->id) selected @endif>{{ $cat->category_name }}</option>
                           @endforeach
                         </select>
                         @if ($errors->has('category'))

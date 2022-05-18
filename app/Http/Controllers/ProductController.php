@@ -21,16 +21,14 @@ class ProductController extends Controller
     {
         if ($request->ajax()) {
             $model = Product::all();
-            $path='product';
             return Datatables::of($model)
             ->addIndexColumn()
             ->addColumn('product_sku', '{{ $product_sku }}')
             ->addColumn('product_name', '{{ $product_name }}')
             ->addColumn('category_id',function($model){
                 return $model->leftjoin('categories','products.category_id','categories.id')->where('products.id',$model->id)->pluck('category_name')->first();
-                // return $model->category->category_name;
             })
-            ->addColumn('status', '{{$status == 0 ? "Active" : "Inactive"}}')
+            ->addColumn('status', '{{ $status == 0 ? "Active" : "Inactive" }}')
             ->addColumn('edit',function($model){
                 return '<a href="'.route("prod_edit",[$model->id]).'" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i></a>
                 

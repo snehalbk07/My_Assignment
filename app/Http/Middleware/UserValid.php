@@ -4,10 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Models\User;
 
-
-class IsValidUser
+class UserValid
 {
     /**
      * Handle an incoming request.
@@ -18,9 +16,11 @@ class IsValidUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->role == 0) {
+        if(auth()->check() && auth()->user()->role == 1)
+        {
             return $next($request);
         }
-        return redirect('login');
+        return redirect('/');
+
     }
 }
