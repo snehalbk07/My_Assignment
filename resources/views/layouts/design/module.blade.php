@@ -26,7 +26,6 @@
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
-            <!-- <ion-icon name="cart-outline" style="font-size:18px"><ion-icon> -->
             <p>
               Category
               <i class="right fas fa-angle-left"></i>
@@ -61,6 +60,24 @@
           </ul> 
         </li>
 
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+            <p>
+              User Master
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{url('users')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Users</p>
+              </a>
+            </li>
+          </ul> 
+        </li>
 
 
         <li class="nav-item">
